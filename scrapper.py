@@ -11,11 +11,16 @@ def convert_b64 (value):
     base64_bytes = base64.b64encode(value_bytes)
     return base64_bytes.decode("ascii")
 
+secret_keys = {0 : 'A'}
+for i in range(1, 26):
+    secret_keys.setdefault(i,chr(i+65))
+for i in range(26,52):
+    secret_keys.setdefault(i,chr(i+71))
 
 query = "restaurants"
-city = "Nagpur,Maharashtra,India"
+city = "Aurangabad,Maharashtra,India"
 encoded_city = convert_b64(city)
-key='Y'
+key = secret_keys[len(city)] 
 
 PATH = Service("/usr/local/bin/geckodriver")
 options = Options()
