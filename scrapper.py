@@ -5,7 +5,6 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import base64
-import time
 
 def convert_b64 (value):
     value_bytes = value.encode("ascii")
@@ -13,21 +12,19 @@ def convert_b64 (value):
     return base64_bytes.decode("ascii")
 
 
-PATH = Service("/usr/local/bin/geckodriver")
-
 query = "restaurants"
-city = "Pune,Maharashtra,India"
+city = "Nagpur,Maharashtra,India"
 encoded_city = convert_b64(city)
-key='W'
+key='Y'
 
+PATH = Service("/usr/local/bin/geckodriver")
 options = Options()
 options.add_argument("--incognito")
-driver = webdriver.Firefox(service=PATH)
+driver = webdriver.Firefox(service=PATH, options=options)
 driver.maximize_window()
 
-final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQIC"+key+encoded_city
-print(final_query)
-driver.get('https://www.google.co.in/search?q=restaurants&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICIWUHVuZSxNYWhhcmFzaHRyYSxJbmRpYQ==')
+final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI"+key+encoded_city
+driver.get(final_query)
 
 try:
     links = WebDriverWait(driver,10).until(
