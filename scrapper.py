@@ -18,17 +18,16 @@ PATH = Service("/usr/local/bin/geckodriver")
 query = "restaurants"
 city = "Pune,Maharashtra,India"
 encoded_city = convert_b64(city)
-print(encoded_city)
 key='W'
 
 options = Options()
 options.add_argument("--incognito")
-driver = webdriver.Firefox(service=PATH, options=options)
+driver = webdriver.Firefox(service=PATH)
 driver.maximize_window()
 
 final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQIC"+key+encoded_city
 print(final_query)
-driver.get('https://www.google.co.in/search?q=restaurants&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICWUHVuZSxNYWhhcmFzaHRyYSxJbmRpYQ==')
+driver.get('https://www.google.co.in/search?q=restaurants&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICIWUHVuZSxNYWhhcmFzaHRyYSxJbmRpYQ==')
 
 try:
     links = WebDriverWait(driver,10).until(
