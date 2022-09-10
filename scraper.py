@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import query_list
 import city_list
 import consts_fxns
+import psycopg2
 
 PATH = Service("/usr/local/bin/geckodriver")
 options = Options()
@@ -15,6 +16,10 @@ driver = webdriver.Firefox(service=PATH, options=options)
 driver.maximize_window()
 
 try:
+    conn = psycopg2.connect(dbname=consts_fxns.DB_NAME, user=consts_fxns.DB_USER, password=consts_fxns.DB_PASS, host=consts_fxns.DB_HOST)
+    cur = conn.cursor()
+    cur.execute("CREATE TABLE IF NOT EXISTS scraped_links (id SERIAL PRIMARY KEY, city VARCHAR(50),query TEXT, link TEXT);")
+    conn.commit()
     for query in query_list.queries:
         for city in city_list.cities:
             encoded_city = consts_fxns.convert_b64(city)
@@ -24,9 +29,10 @@ try:
             links = WebDriverWait(driver,20000).until(
                 EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
             )
-            print(city + " " + query + ":")
             for link in links:
-                print(link.get_attribute("href"))
-            print("City Done\n")
+                cur.execute("INSERT INTO scraped_links(city, query, link) VALUES (%s,%s,%s)",(city,query,link.get_attribute("href")))
+                conn.commit()
 finally:
+    cur.close()
+    conn.close()
     driver.quit()

@@ -1,5 +1,7 @@
 cities = [
     "Pune,Maharashtra,India",
-    "Gandhinagar,Gujrat,India",
-    "Bhopal,Madhya Pradesh,India"
+    "Agra,Uttar Pradesh,India",
+    "Chennai,Tamil Nadu,India",
+    "Lucknow,Uttar Pradesh,India",
+    "Bhopal,Madhya Pradesh,India",
 ]

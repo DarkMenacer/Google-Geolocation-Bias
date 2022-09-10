@@ -1,5 +1,5 @@
 queries = [
-    "restaurants",
-    "hospitals",
-    "swimming+pool+near+me"
+    "Swimming+Pool",
+    "Python",
+    "PostgreSQL"
 ]
