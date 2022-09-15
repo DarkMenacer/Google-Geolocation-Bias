@@ -34,25 +34,13 @@ try:
                 links_array.append(link.get_attribute("href"))
             temp[city] = (city,links_array)
         di[query]=temp
-    # for query in di:
-    #     print(query)
-    #     for i in di[query]:
-    #         print(di[query][i][0], di[query][i][1])
-    #         print("\n")
-    
-        
-
-    #print(di)
 
 finally:
+    print("RBO Values:\n")
+    for query in query_list.queries:
+        for city in city_list.cities:
+            print(query + " " + city+":",end=' ')
+            print(rbo.RankingSimilarity(di[query]["Pune,Maharashtra,India"][1], di[query][city][1]).rbo())
+    print("\n-----")
     driver.quit()
-
-# print(di["Restaurants+near+me"]["Pune,Maharashtra,India"][1])
-
-for query in query_list.queries:
-    for city in city_list.cities:
-        print(query + "    " + city)
-        print(rbo.RankingSimilarity(di[query]["Pune,Maharashtra,India"][1], di[query][city][1]).rbo())
-        print("\n")
-
 
