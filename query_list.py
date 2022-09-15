@@ -1,5 +1,5 @@
 queries = [
-    "Swimming+Pool",
-    "Python",
-    "PostgreSQL"
+    "Restaurants+near+me",
+    "College+Near+me",
+    "Barber+Shop"
 ]
