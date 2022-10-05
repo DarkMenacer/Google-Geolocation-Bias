@@ -12,6 +12,6 @@ for i in range(26,52):
     secret_keys.setdefault(i,chr(i+71))
 
 DB_HOST = "Pranavs-MacBook-Pro.local"
-DB_NAME = "con_with_py"
+DB_NAME = "google_bias"
 DB_USER = "pranavchatur"
 DB_PASS = "psql"

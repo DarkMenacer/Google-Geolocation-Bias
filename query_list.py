@@ -1,5 +1,5 @@
 queries = [
-    "Hospital+near+me",
-    "Order+Food",
-    "Solar+System"
+    "My+location",
+    "Pen",
+    "Solar+System",
 ]
