@@ -18,21 +18,38 @@ conn = psycopg2.connect(dbname=consts_fxns.DB_NAME, user=consts_fxns.DB_USER, pa
 cur = conn.cursor()
 
 try:
-    cur.execute("CREATE TABLE IF NOT EXISTS scraped_links (id SERIAL PRIMARY KEY, city VARCHAR(50),query TEXT, link TEXT);")
+    cur.execute("CREATE TABLE IF NOT EXISTS test_subjects (query TEXT, city TEXT, qcid SERIAL UNIQUE, PRIMARY KEY (query,city));")
+    cur.execute("CREATE TABLE IF NOT EXISTS rbo_table (qcid BIGINT PRIMARY KEY, rbo NUMERIC(6,5), FOREIGN KEY (qcid) REFERENCES test_subjects(qcid));")
+    cur.execute("CREATE TABLE IF NOT EXISTS links_table (qcid BIGINT PRIMARY KEY, links TEXT [], FOREIGN KEY (qcid) REFERENCES test_subjects(qcid));")
+    cur.execute("TRUNCATE TABLE links_table, rbo_table, test_subjects RESTART IDENTITY CASCADE;")
     conn.commit()
+    qcid = 1
     for query in query_list.queries:
         for city in city_list.cities:
+            cur.execute("INSERT INTO test_subjects(query, city) VALUES (%s,%s);", (query,city))
+            conn.commit()
             encoded_city = consts_fxns.convert_b64(city)
             key = consts_fxns.secret_keys[len(city)] 
             final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI"+key+encoded_city
             driver.get(final_query)
-            links = WebDriverWait(driver,20000).until(
+            link_elements = WebDriverWait(driver,20000).until(
                 EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
             )
-            for link in links:
-                cur.execute("INSERT INTO scraped_links(city, query, link) VALUES (%s,%s,%s)",(city,query,link.get_attribute("href")))
-                conn.commit()
+            links = []
+            for element in link_elements:
+                links.append(element.get_attribute("href"))
+            cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
+            conn.commit()
+            qcid+=1
+
 finally:
+    driver.quit()
+    x = input("If you wish to truncate all tables, press 'T':")
+    if x == 'T':
+        cur.execute("TRUNCATE TABLE links_table, rbo_table, test_subjects RESTART IDENTITY CASCADE;")
+        conn.commit()
+        print("The data is erased")
+    else:
+        print("The database persists")
     cur.close()
     conn.close()
-    driver.quit()
