@@ -29,7 +29,6 @@ finally:
             conn.commit()
             print(query + " " + city+":",end=' ')
             print(val)
-    print(rbo.RankingSimilarity(data["Solar+System"]["Pune,Maharashtra,India"][0], data["Pen"]["Chennai,Tamil Nadu,India"][0]).rbo())
     print("\n-----")
     cur.close()
     conn.close()

@@ -1,5 +1,5 @@
 queries = [
-    "My+location",
-    "Pen",
+    "Restaurants+near+me",
     "Solar+System",
+    "Places+to+visit+nearby"
 ]
