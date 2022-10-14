@@ -34,22 +34,19 @@ try:
             driver.get(final_query)
             link_elements = WebDriverWait(driver,20000).until(
                 EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
+                #EC.presence_of_all_elements_located((By.CSS_SELECTOR,'h3.LC20lb.MBeuO.DKV0Md'))
             )
             links = []
             for element in link_elements:
-                links.append(element.get_attribute("href"))
+                #if(consts_fxns.find_in(element.get_attribute("href"), links) == 1):
+                    links.append(element.get_attribute("href"))
+                #if(element.text != ''):
+                    #links.append(element.text)
             cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
             conn.commit()
             qcid+=1
 
 finally:
     driver.quit()
-    """ x = input("If you wish to truncate all tables, press 'T': ")
-    if x == 'T':
-        cur.execute("TRUNCATE TABLE links_table, rbo_table, test_subjects RESTART IDENTITY CASCADE;")
-        conn.commit()
-        print("The data is erased")
-    else:
-        print("The database persists") """
     cur.close()
     conn.close()
