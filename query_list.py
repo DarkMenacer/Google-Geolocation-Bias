@@ -1,5 +1,3 @@
 queries = [
-    "Restaurants+near+me",
-    "Solar+System",
-    "Places+to+visit+nearby"
+    "Best Football Coach in my city"
 ]

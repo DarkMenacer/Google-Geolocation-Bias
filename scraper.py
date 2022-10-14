@@ -44,12 +44,12 @@ try:
 
 finally:
     driver.quit()
-    x = input("If you wish to truncate all tables, press 'T': ")
+    """ x = input("If you wish to truncate all tables, press 'T': ")
     if x == 'T':
         cur.execute("TRUNCATE TABLE links_table, rbo_table, test_subjects RESTART IDENTITY CASCADE;")
         conn.commit()
         print("The data is erased")
     else:
-        print("The database persists")
+        print("The database persists") """
     cur.close()
     conn.close()
