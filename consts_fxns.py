@@ -25,15 +25,11 @@ def find_in(x, links):
             break
     return exists
 
-
-
 def print_diff(g1,g2):
     for m in g1:
         if find_in(m,g2) == 0:
             print(m)
     print("This is the difference")
-
-
 
 def doppleganger(g1):
     occ = {}
@@ -47,3 +43,6 @@ def doppleganger(g1):
         if occ[m1] > 1:
             print(m1)
     print("This is the doppleganger\n")
+    print("This is the links table but organised:")
+    for key, value in occ.items():
+        print(key + " = " + str(value))

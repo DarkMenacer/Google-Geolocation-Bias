@@ -1,3 +1,3 @@
 queries = [
-    "How is Narendra Modi"
+    "Best Football coach in my city"
 ]
