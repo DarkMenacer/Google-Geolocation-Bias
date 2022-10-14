@@ -26,27 +26,28 @@ try:
     qcid = 1
     for query in query_list.queries:
         for city in city_list.cities:
+            print("Scraping for " + query + " in " + city + ": ",end=" ")
             cur.execute("INSERT INTO test_subjects(query, city) VALUES (%s,%s);", (query,city))
             conn.commit()
             encoded_city = consts_fxns.convert_b64(city)
             key = consts_fxns.secret_keys[len(city)] 
             final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI"+key+encoded_city
             driver.get(final_query)
-            #print(final_query)
+            print(final_query)
             link_elements = WebDriverWait(driver,20000).until(
-                EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
-                #EC.presence_of_all_elements_located((By.CSS_SELECTOR,'h3.LC20lb.MBeuO.DKV0Md'))
+                #EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR,'h3.LC20lb.MBeuO.DKV0Md'))
             )
             links = []
             for element in link_elements:
                 #print(str(element.get_attribute("href")) + " is getting stored")
 
-                for link in links:
-                    if element.get_attribute("href") == link:
-                        continue
-                    links.append(element.get_attribute("href"))
-                #if(element.text != ''):
-                    #links.append(element.text)
+                #for link in links:
+                #    if element.get_attribute("href") == link:
+                #        continue
+                #links.append(element.get_attribute("href"))
+                if(element.text != ''):
+                    links.append(element.text)
             cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
             conn.commit()
             qcid+=1
