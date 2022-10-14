@@ -16,20 +16,12 @@ DB_NAME = "google_bias"
 DB_USER = "pranavchatur"
 DB_PASS = "psql"
 
-#function was created to test whether same link is being stored twice, apparently it is not
-def find_in(x, links):
-    exists = 0
-    for link in links:
-        if x != link:
-            exists = 1
-            break
-    return exists
 
-def print_diff(g1,g2):
+""" def print_diff(g1,g2):
     for m in g1:
         if find_in(m,g2) == 0:
             print(m)
-    print("This is the difference")
+    print("This is the difference") """
 
 def doppleganger(g1):
     occ = {}
@@ -46,3 +38,10 @@ def doppleganger(g1):
     print("This is the links table but organised:")
     for key, value in occ.items():
         print(key + " = " + str(value))
+    print()
+
+def should_store(x, links):
+    for link in links:
+        if x == links:
+            return 0
+    return 1

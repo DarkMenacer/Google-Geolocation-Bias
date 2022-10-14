@@ -32,13 +32,18 @@ try:
             key = consts_fxns.secret_keys[len(city)] 
             final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI"+key+encoded_city
             driver.get(final_query)
+            #print(final_query)
             link_elements = WebDriverWait(driver,20000).until(
                 EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
                 #EC.presence_of_all_elements_located((By.CSS_SELECTOR,'h3.LC20lb.MBeuO.DKV0Md'))
             )
             links = []
             for element in link_elements:
-                #if(consts_fxns.find_in(element.get_attribute("href"), links) == 1):
+                #print(str(element.get_attribute("href")) + " is getting stored")
+
+                for link in links:
+                    if element.get_attribute("href") == link:
+                        continue
                     links.append(element.get_attribute("href"))
                 #if(element.text != ''):
                     #links.append(element.text)
