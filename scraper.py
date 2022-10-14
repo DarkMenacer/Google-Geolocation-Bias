@@ -35,19 +35,21 @@ try:
             driver.get(final_query)
             print(final_query)
             link_elements = WebDriverWait(driver,20000).until(
-                #EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
-                EC.presence_of_all_elements_located((By.CSS_SELECTOR,'h3.LC20lb.MBeuO.DKV0Md'))
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
+                #EC.presence_of_all_elements_located((By.CSS_SELECTOR,'h3.LC20lb.MBeuO.DKV0Md'))
             )
             links = []
             for element in link_elements:
-                #print(str(element.get_attribute("href")) + " is getting stored")
-
-                #for link in links:
-                #    if element.get_attribute("href") == link:
-                #        continue
-                #links.append(element.get_attribute("href"))
-                if(element.text != ''):
-                    links.append(element.text)
+                store = True
+                for link in links:
+                    if str(element.get_attribute("href")) == link:
+                        print(str(element.get_attribute("href"))+" is skipped")
+                        store = False
+                if store:
+                    links.append(str(element.get_attribute("href")))
+                
+                #if(element.text != ''):
+                #    links.append(element.text)
             cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
             conn.commit()
             qcid+=1
