@@ -46,4 +46,4 @@ def doppleganger(g1):
     for m1 in g1:
         if occ[m1] > 1:
             print(m1)
-    print("This is the doppleganger")
+    print("This is the doppleganger\n")

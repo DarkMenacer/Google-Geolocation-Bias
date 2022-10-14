@@ -9,11 +9,9 @@ cur = conn.cursor()
 data = {}
 
 try:
-    x = input("If you wish to truncate rbo_table, press 'T': ")
-    if x == 'T':
-        cur.execute("TRUNCATE TABLE rbo_table")
-        conn.commit()
-        print("The rbo table is erased")
+    cur.execute("TRUNCATE TABLE rbo_table")
+    conn.commit()
+    print("The rbo table is erased")
 
     for query in query_list.queries:
         data[query] = {}
@@ -24,23 +22,19 @@ try:
             links = cur.fetchone()
             data[query][city] = links 
             
-    """ print(data[query][city_list.base_city][0])
-    print()
-    print()
-    print(set(data[query][city_list.base_city][0])) """
     print("RBO Values:\n")
     for query in query_list.queries:
         for city in city_list.cities:
             print(query + " " + city+":",end=' ')
-            print(len(data[query][city][0]), len(set(data[query][city][0])))
             if(len(data[query][city][0]) != len(set(data[query][city][0]))):
+                print(len(data[query][city][0]), len(set(data[query][city][0])))
                 consts_fxns.doppleganger(data[query][city][0])
                 #consts_fxns.print_diff(data[query][city_list.base_city][0],set(data[query][city_list.base_city][0]))
                 #consts_fxns.print_diff(set(data[query][city_list.base_city][0]),data[query][city_list.base_city][0])
             else:
                 val = rbo.RankingSimilarity(data[query][city_list.base_city][0], data[query][city][0]).rbo()
                 cur.execute("SELECT qcid FROM test_subjects WHERE query = %s AND city = %s",(query,city))
-                cid = cur.fetchone()
+                qcid = cur.fetchone()
                 cur.execute("INSERT INTO rbo_table (qcid, rbo) VALUES (%s,%s);",(qcid,val))
                 conn.commit()
                 print(val)
