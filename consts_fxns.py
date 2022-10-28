@@ -16,7 +16,33 @@ DB_NAME = "google_bias"
 DB_USER = "pranavchatur"
 DB_PASS = "psql"
 
+def display(x):
+    for element in x:
+        print(element.get_attribute("href"))
 
+def adjust_links(link_elements, peep_also_ask):
+    k = 0; flag = False
+    for i in range(len(link_elements)):
+        for j in range(i,len(link_elements)):
+            if str(link_elements[j]) != str(peep_also_ask[k]):
+                k = 0
+                break
+            else:
+                k+=1
+                if(k == len(peep_also_ask)): 
+                    flag = True
+                    break
+        if flag: break
+    if flag == False: 
+        print("Sub-array absent! no change in link_elements")
+    else:
+        counter = 0
+        while(counter < j+1-i):
+            print(str(link_elements[i].get_attribute("href"))+ " is removed")
+            link_elements.remove(link_elements[i])
+            counter+=1
+    return link_elements
+            
 """ def print_diff(g1,g2):
     for m in g1:
         if find_in(m,g2) == 0:
@@ -42,6 +68,6 @@ def doppleganger(g1):
 
 def should_store(x, links):
     for link in links:
-        if x == links:
+        if x == link:
             return 0
     return 1

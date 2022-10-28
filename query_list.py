@@ -1,6 +1,6 @@
 queries = [
+    "Narendra Modi"
     #"Best Football coach in my city",
-    "Is Narendra Modi a good prime minister",
     #"Making money nearby",
     #"Comedians near me",
 #Ayush
@@ -27,5 +27,18 @@ queries = [
     #"What Jobs pay the most",
     #"Gig Economy",
     #"Easiest jobs to get around",
-    #"How to deal with stress due to jobs"
+    #"How to deal with stress due to jobs",
+#Sentimental Queries
+    #"Is Narendra Modi a good prime minister?",
+    #"Is Narendra Modi a bad prime minister?",
+    #"Are iPhones better than Androids?",
+    #"Is India safe for women?",
+    #"Is Salman Khan a good human being?",
+    #"Was Indira Gandhi a good leader?",
+    #"Should India help Sri Lanka?",
+    #"Can India win a war against China?", #Pakistan?
+    #"Are Muslims a threat to national security?",
+    #"Is CAA NRC bad?",
+    #"Are there pakistani spies in India?", #Chinese?
+    #"Who was responsible for 26/11?",
 ]

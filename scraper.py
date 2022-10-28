@@ -34,26 +34,31 @@ try:
             final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI"+key+encoded_city
             driver.get(final_query)
             print(final_query)
+
             link_elements = WebDriverWait(driver,20000).until(
                 EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
                 #EC.presence_of_all_elements_located((By.CSS_SELECTOR,'h3.LC20lb.MBeuO.DKV0Md'))
             )
+            peeps_also_ask = WebDriverWait(driver,5).until(
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.tF2Cxc > .yuRUbf > a'))
+            )
+            #consts_fxns.display(link_elements);print();consts_fxns.display(peeps_also_ask);print()
+            link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask)
             links = []
             for element in link_elements:
-                store = True
+                """ store = True
                 for link in links:
                     if str(element.get_attribute("href")) == link:
                         print(str(element.get_attribute("href"))+" is skipped")
                         store = False
                 if store:
-                    links.append(str(element.get_attribute("href")))
-                
-                #if(element.text != ''):
-                #    links.append(element.text)
+                    links.append(str(element.get_attribute("href"))) """
+
+                links.append(str(element.get_attribute("href")))
+                #if(element.text != ''):links.append(element.text)
             cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
             conn.commit()
             qcid+=1
-
 finally:
     driver.quit()
     cur.close()
