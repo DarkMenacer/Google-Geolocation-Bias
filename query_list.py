@@ -1,8 +1,8 @@
 queries = [
-    #"Narendra Modi"
-    #"Best Football coach in my city",
-    #"Making money nearby",
-    #"Comedians near me",
+    "Narendra Modi",
+    "Best Football coach in my city",
+    "Making money nearby",
+    "Comedians near me",
 #Ayush
     #"Should I buy iPhone 14",
     #"What is Artificial Intelligence",
@@ -21,7 +21,7 @@ queries = [
 #Naman
     #"Nuclear Wars",
     #"Nupur Sharma",
-    "Ram mandir",
+    #"Ram mandir",
     #"Best state in India",
 #Pranav
     #"What Jobs pay the most",

@@ -1,13 +1,14 @@
-base_city = "Lucknow,Uttar Pradesh,India"
+base_city = "New Delhi,Delhi,India"
 
 cities = [
     base_city,
     #"Amritsar,Punjab,India",
     #"Kurukshetra,Haryana,India",
     #"Korba,Chhattisgarh,India",
+    #"New Delhi,Delhi,India", #will stay commented if same as base city
     #"Lucknow,Uttar Pradesh,India",
-    "Agra,Uttar Pradesh,India",
-    "Jhansi,Uttar Pradesh,India",
+    #"Agra,Uttar Pradesh,India",
+    #"Jhansi,Uttar Pradesh,India",
     #"Patna,Bihar,India",
     #"Guwahati,Assam,India",
     #"Dibrugarh,Assam,India",
@@ -15,17 +16,17 @@ cities = [
     #"Ahmedabad,Gujarat,India",
     #"Bhopal,Madhya Pradesh,India",
     #"Nagpur,Maharashtra,India",
-    #"Mumbai,Maharashtra,India",
+    "Mumbai,Maharashtra,India",
     #"Pune,Maharashtra,India",
     #"Jamshedpur,Jharkhand,India",
     #"Kharagpur,West Bengal,India",
-    #"Kolkata,West Bengal,India",
+    "Kolkata,West Bengal,India",
     #"Shivamogga,Karnataka,India",
     #"Bengaluru,Karnataka,India",
     #"Bhubaneswar,Odisha,India",
     #"Hyderabad,Telangana,India",
     #"Visakhapatnam,Andhra Pradesh,India",
     #"Sivakasi,Tamil Nadu,India",
-    #"Chennai,Tamil Nadu,India",
+    "Chennai,Tamil Nadu,India",
     #"Kochi,Kerala,India",
 ]
