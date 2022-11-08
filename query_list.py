@@ -1,5 +1,5 @@
 queries = [
-    "Narendra Modi"
+    #"Narendra Modi"
     #"Best Football coach in my city",
     #"Making money nearby",
     #"Comedians near me",
@@ -21,7 +21,7 @@ queries = [
 #Naman
     #"Nuclear Wars",
     #"Nupur Sharma",
-    #"Ram mandir",
+    "Ram mandir",
     #"Best state in India",
 #Pranav
     #"What Jobs pay the most",

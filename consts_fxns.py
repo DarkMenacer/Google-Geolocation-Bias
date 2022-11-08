@@ -15,6 +15,7 @@ DB_HOST = "Pranavs-MacBook-Pro.local"
 DB_NAME = "google_bias"
 DB_USER = "pranavchatur"
 DB_PASS = "psql"
+GECKO_PATH = "/usr/local/bin/geckodriver"
 
 def display(x):
     for element in x:

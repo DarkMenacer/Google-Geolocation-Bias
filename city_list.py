@@ -1,4 +1,4 @@
-base_city = "New Delhi,Delhi,India"
+base_city = "Lucknow,Uttar Pradesh,India"
 
 cities = [
     base_city,
@@ -6,6 +6,8 @@ cities = [
     #"Kurukshetra,Haryana,India",
     #"Korba,Chhattisgarh,India",
     #"Lucknow,Uttar Pradesh,India",
+    "Agra,Uttar Pradesh,India",
+    "Jhansi,Uttar Pradesh,India",
     #"Patna,Bihar,India",
     #"Guwahati,Assam,India",
     #"Dibrugarh,Assam,India",

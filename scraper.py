@@ -4,18 +4,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 import query_list
 import city_list
 import consts_fxns
 import psycopg2
 
-PATH = Service("/usr/local/bin/geckodriver")
-options = Options()
-options.add_argument("--incognito")
-driver = webdriver.Firefox(service=PATH, options=options)
-driver.maximize_window()
 conn = psycopg2.connect(dbname=consts_fxns.DB_NAME, user=consts_fxns.DB_USER, password=consts_fxns.DB_PASS, host=consts_fxns.DB_HOST)
 cur = conn.cursor()
+
+PATH = Service(consts_fxns.GECKO_PATH)
+options = Options()
+options.add_argument("--incognito")
 
 try:
     cur.execute("CREATE TABLE IF NOT EXISTS test_subjects (query TEXT, city TEXT, qcid SERIAL UNIQUE, PRIMARY KEY (query,city));")
@@ -32,33 +32,24 @@ try:
             encoded_city = consts_fxns.convert_b64(city)
             key = consts_fxns.secret_keys[len(city)] 
             final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI"+key+encoded_city
-            driver.get(final_query)
-            print(final_query)
-
-            link_elements = WebDriverWait(driver,20000).until(
-                EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
-                #EC.presence_of_all_elements_located((By.CSS_SELECTOR,'h3.LC20lb.MBeuO.DKV0Md'))
-            )
-            peeps_also_ask = WebDriverWait(driver,5).until(
-                EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.tF2Cxc > .yuRUbf > a'))
-            )
-            #consts_fxns.display(link_elements);print();consts_fxns.display(peeps_also_ask);print()
-            link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask)
-            links = []
-            for element in link_elements:
-                """ store = True
-                for link in links:
-                    if str(element.get_attribute("href")) == link:
-                        print(str(element.get_attribute("href"))+" is skipped")
-                        store = False
-                if store:
-                    links.append(str(element.get_attribute("href"))) """
-
-                links.append(str(element.get_attribute("href")))
-                #if(element.text != ''):links.append(element.text)
-            cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
-            conn.commit()
-            qcid+=1
+            try:
+                driver = webdriver.Firefox(service=PATH, options=options)
+                driver.maximize_window()
+                driver.get(final_query)
+                print(final_query)
+                link_elements = WebDriverWait(driver,20000).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a')))
+                peeps_also_ask = WebDriverWait(driver,5).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.tF2Cxc > .yuRUbf > a')))
+                #consts_fxns.display(link_elements);print();consts_fxns.display(peeps_also_ask);print()
+                link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask)
+                links = []
+                for element in link_elements:
+                    links.append(str(element.get_attribute("href")))
+                cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
+                conn.commit()
+                qcid+=1
+            finally:
+                driver.close()
+                time.sleep(0.25)
 finally:
     driver.quit()
     cur.close()
