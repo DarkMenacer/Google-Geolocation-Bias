@@ -2,7 +2,7 @@ base_city = "New Delhi,Delhi,India"
 
 cities = [
     base_city,
-    #"Amritsar,Punjab,India",
+    "Amritsar,Punjab,India",
     #"Kurukshetra,Haryana,India",
     #"Korba,Chhattisgarh,India",
     #"New Delhi,Delhi,India", #will stay commented if same as base city
@@ -13,10 +13,10 @@ cities = [
     #"Guwahati,Assam,India",
     #"Dibrugarh,Assam,India",
     #"Shillong,Meghalaya,India",
-    #"Ahmedabad,Gujarat,India",
+    "Ahmedabad,Gujarat,India",
     #"Bhopal,Madhya Pradesh,India",
     #"Nagpur,Maharashtra,India",
-    "Mumbai,Maharashtra,India",
+    #"Mumbai,Maharashtra,India",
     #"Pune,Maharashtra,India",
     #"Jamshedpur,Jharkhand,India",
     #"Kharagpur,West Bengal,India",

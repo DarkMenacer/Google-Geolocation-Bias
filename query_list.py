@@ -1,8 +1,9 @@
 queries = [
-    "Narendra Modi",
-    "Best Football coach in my city",
-    "Making money nearby",
-    "Comedians near me",
+    #"Narendra Modi",
+    #"Best Football coach in my city",
+    #"Making money nearby",
+    #"Best Universities",
+    #"Comedians near me",
 #Ayush
     #"Should I buy iPhone 14",
     #"What is Artificial Intelligence",
@@ -41,4 +42,7 @@ queries = [
     #"Is CAA NRC bad?",
     #"Are there pakistani spies in India?", #Chinese?
     #"Who was responsible for 26/11?",
+    # "Is Kejriwal a good leader?", #consistently less than 1
+    "is kejriwal better than modi", #consistently 1
+    
 ]
