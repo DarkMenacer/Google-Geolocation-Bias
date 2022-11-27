@@ -48,12 +48,19 @@ The purpose of this software is to measure whether there is any bias that is ind
 
 ---
 
-### Additional Info (can be skipped)
+### Log
 
-There are totally 4 versions of the scraper code.
-    1. Firefox Same Window
-    2. Firefox New Window
-    3. *Chrome New Window
+    Created: 9 September 2022
+    Last Edit : 27 November 2022
+    
+---
+
+#### Additional Info (can be skipped)
+
+There are totally 4 versions of the scraper code.\
+    1. Firefox Same Window\
+    2. Firefox New Window\
+    3. *Chrome New Window\
     4. Chrome Same Window (default)
 
 Here "Same Window" implies that all queries for all cities will be executed on the same browser instance whereas "New Window" implies that for every query a new browser window would be opened.
@@ -66,9 +73,3 @@ Note: The code for scraper.py for Chrome New Window is erroneous and doesn't wor
 
 ---
 
-### Log
-
-    Created: 9 September 2022
-    Last Edit : 27 November 2022
-    
----
