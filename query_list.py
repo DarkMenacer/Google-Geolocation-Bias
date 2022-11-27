@@ -19,16 +19,17 @@ queries = [
     #"Qatar World Cup Human Rights",
     #"Scouting Agencies near me",
     #"Most Dangerous Places for tourists",
-    #"Covid Rules for Tourists",
+    "Covid Rules for Tourists",
 #Naman
     #"Nuclear Wars",
     #"Nupur Sharma",
     #"Ram mandir",
-    #"Best state in India",
+    "Best state in India",
+    #"General Safety tips",
 #Pranav
-    "What Jobs pay the most",
+    #"What Jobs pay the most",
     #"Gig Economy",
-    #"Easiest jobs to get around",
+    "Easiest jobs to get around",
     #"How to deal with stress due to jobs",
 #Sentimental Queries
     #"Is Narendra Modi a good prime minister?",
@@ -43,7 +44,7 @@ queries = [
     #"Is CAA NRC bad?",
     #"Are there pakistani spies in India?", #Chinese?
     #"Who was responsible for 26/11?",
-    "Is Kejriwal a good leader?", #consistently less than 1
-    "is kejriwal better than modi", #consistently 1
+    #"Is Kejriwal a good leader?", #consistently less than 1
+    #"is kejriwal better than modi", #consistently 1
     
 ]

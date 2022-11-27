@@ -29,7 +29,9 @@ cities = [
     #"Sivakasi,Tamil Nadu,India",
     #"Chennai,Tamil Nadu,India",
     #"Kochi,Kerala,India",
-    		base_city,
+
+    #Following are all the capital cities of states of India
+    base_city,
     "522237,Andhra Pradesh,India",
 		"Arunachal Pradesh,India",
 		"Assam,India",

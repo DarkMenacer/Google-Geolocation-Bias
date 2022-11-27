@@ -63,3 +63,4 @@ def doppleganger(g1):
     for key, value in occ.items():
         print(key + " = " + str(value))
     print()
+
