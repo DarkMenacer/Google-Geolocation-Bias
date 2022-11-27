@@ -7,7 +7,6 @@ import query_list
 import city_list
 import consts_fxns
 import psycopg2
-import time
 
 def main():
     chrome_options = Options()
@@ -20,6 +19,7 @@ def main():
     chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument('--incognito')
     
+    driver = uc.Chrome(version_main=107, options=chrome_options)
     conn = psycopg2.connect(dbname=consts_fxns.DB_NAME, user=consts_fxns.DB_USER, password=consts_fxns.DB_PASS, host=consts_fxns.DB_HOST)
     cur = conn.cursor()
     try:
@@ -31,39 +31,34 @@ def main():
         qcid = 1
         for query in query_list.queries:
             for city in city_list.cities:
-                try:
-                    driver = uc.Chrome(version_main=107, options=chrome_options)
-                    print("Scraping for " + query + " in " + city + ": ",end=" ")
-                    cur.execute("INSERT INTO test_subjects(query, city) VALUES (%s,%s);", (query,city))
-                    conn.commit()
-                    encoded_city = consts_fxns.convert_b64(city)
-                    key = consts_fxns.secret_keys[len(city)] 
-                    final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI"+key+encoded_city
-                    driver.get(final_query)
-                    print(final_query)
+                print("Scraping for " + query + " in " + city + ": ",end=" ")
+                cur.execute("INSERT INTO test_subjects(query, city) VALUES (%s,%s);", (query,city))
+                conn.commit()
+                encoded_city = consts_fxns.convert_b64(city)
+                key = consts_fxns.secret_keys[len(city)] 
+                final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI"+key+encoded_city
+                driver.get(final_query)
+                print(final_query)
 
-                    link_elements = WebDriverWait(driver,20000).until(
-                        EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
+                link_elements = WebDriverWait(driver,20000).until(
+                    EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
+                )
+                try:
+                    peeps_also_ask = WebDriverWait(driver,5).until(
+                        EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.tF2Cxc > .yuRUbf > a'))
                     )
-                    try:
-                        peeps_also_ask = WebDriverWait(driver,5).until(
-                            EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.tF2Cxc > .yuRUbf > a'))
-                        )
-                    except:
-                        print("People also ask wasn't present")
-                    finally:
-                        #consts_fxns.display(link_elements);print();consts_fxns.display(peeps_also_ask);print()
-                        link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask)
-                        links = []
-                        for element in link_elements:
-                            links.append(str(element.get_attribute("href")))
-                        cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
-                        conn.commit()
-                        qcid+=1
-                        # driver.delete_all_cookies()
+                except:
+                    print("People also ask wasn't present")
                 finally:
-                    driver.close()
-                    time.sleep(1)
+                    #consts_fxns.display(link_elements);print();consts_fxns.display(peeps_also_ask);print()
+                    link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask)
+                    links = []
+                    for element in link_elements:
+                        links.append(str(element.get_attribute("href")))
+                    cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
+                    conn.commit()
+                    qcid+=1
+                    #driver.delete_all_cookies() #<-- if uncommented, gives repeated captchas after certain no. of runs
     finally:
         driver.quit()
         cur.close()
