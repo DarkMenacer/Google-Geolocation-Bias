@@ -37,7 +37,7 @@ The purpose of this software is to measure whether there is any bias that is ind
     1. Clone the repository and install the required softwares.
     2. In the file, "consts_fxns.py", update the database details as per your system (ignore GECKO_PATH if Firefox isn't used).
     3. Add the queries you want to search for in the "query_list.py" file.
-    4. Add the cities you to search the query in and the base city to which all other cities will be compared.
+    4. Add the cities you to search the query in and the base city to which all other cities will be compared. (Complete canonical name as per https://developers.google.com/static/adwords/api/docs/appendix/geo/geotargets-2022-08-18.csv)
        1. NOTE: Do not add base city in the city_list as it is already added.
        2. NOTE: Do not add any city twice to avoid constraint issues in the database.
     5. To run the program:-
