@@ -44,14 +44,31 @@ def main():
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
                 )
                 try:
-                    peeps_also_ask = WebDriverWait(driver,5).until(
+                    peeps_also_ask = WebDriverWait(driver,1).until(
                         EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.tF2Cxc > .yuRUbf > a'))
                     )
+
+                    # print("Peeps also ask is:"); consts_fxns.display(peeps_also_ask); print()
+                    # print("All links are:"); consts_fxns.display(link_elements); print(); print()
+
+                    if (len(peeps_also_ask) < 5):
+                        link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask)
+                    else:
+                        peeps_also_ask1 = []
+                        peeps_also_ask2 = []
+                        i = 0
+                        for link in peeps_also_ask:
+                            if(i<4):
+                                peeps_also_ask1.append(link)
+                            else:
+                                peeps_also_ask2.append(link)
+                            i+=1
+                        link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask1)
+                        link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask2)
+                
                 except:
                     print("People also ask wasn't present")
                 finally:
-                    #consts_fxns.display(link_elements);print();consts_fxns.display(peeps_also_ask);print()
-                    link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask)
                     links = []
                     for element in link_elements:
                         links.append(str(element.get_attribute("href")))

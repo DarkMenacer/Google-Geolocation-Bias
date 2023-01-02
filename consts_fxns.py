@@ -25,7 +25,7 @@ def display(x):
 
 def adjust_links(link_elements, peep_also_ask):
     k = 0; flag = False
-    for i in range(len(link_elements)):
+    for i in range(0, len(link_elements)):
         for j in range(i,len(link_elements)):
             if str(link_elements[j]) != str(peep_also_ask[k]):
                 k = 0
