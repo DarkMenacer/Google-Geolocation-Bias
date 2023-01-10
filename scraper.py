@@ -43,6 +43,15 @@ def main():
                 link_elements = WebDriverWait(driver,20000).until(
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
                 )
+
+                try:
+                    ads = WebDriverWait(driver,2).until(
+                    EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.v5yQqb > a'))
+                )
+                    print("Ads were present")
+                except:
+                    print(end='')
+
                 try:
                     peeps_also_ask = WebDriverWait(driver,1).until(
                         EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.tF2Cxc > .yuRUbf > a'))
@@ -70,6 +79,10 @@ def main():
                     print("People also ask wasn't present")
                 finally:
                     links = []
+
+                    for element in ads:
+                        links.append(str(element.get_attribute("href")))
+
                     for element in link_elements:
                         links.append(str(element.get_attribute("href")))
                     cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
