@@ -44,8 +44,9 @@ def main():
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.yuRUbf > a'))
                 )
 
+                ads = []
                 try:
-                    ads = WebDriverWait(driver,2).until(
+                    ads = WebDriverWait(driver,1).until(
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR,'.v5yQqb > a'))
                 )
                     print("Ads were present")
