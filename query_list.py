@@ -2,7 +2,7 @@ queries = [
 
     #Naman
     "Covid Conspiracy",             #gives same but different results. -> medical/controversial
-    "Indira Gandhi death cause",    #--> Controversial
+    "Indira Gandhi death cause",    #--> Controversial  #consistently varied
     "China Covid Origin",           #weird results. -> controversial
     "best hospitals",               #gives close to 0 for all cities. -> medical 0
     "aftab poonawala",              #differing results. -> important personalities
@@ -10,14 +10,13 @@ queries = [
     "covid origins",                #good results -> medical/controversial
     "easy jobs",                    #-> Jobs
     "best jobs",                    #->Jobs. #very interesting tells about best jobs in usa in some and best jobs in india in some
-	"agriculture",                  #assertion error bihar everywhere. -> 
 	"best hospital in india",       #-> medical
 	"Petrol price",	
 	"Best share to buy",
 	"LGBTQ Rights",
 
     #Ayush
-    "Unemployment allownance",
+    "Unemployment allowance",
 	"Covid deaths",
 	"tech jobs",
 	"China",
@@ -35,7 +34,6 @@ queries = [
 
 
     #Varun
-    "Indira Gandhi death cause",        #-> Controversial #consistently varied
     "police",                           #local #->Important Personalities/Organisation
     "Military Technology",              # -> Controversial/ Armyfiller always 1
     "China a threat to international peace", #-> International
@@ -44,8 +42,6 @@ queries = [
     "demonetization effects on rural india", #-> Controversial #kolkata?? filler all1
     "sushant singh rajput suicide",     # -> Controversial
     "covid rules",                      #good variance -> Medical 
-    "tech jobs",                        #good ->JOBS
-    "china",                            #somewhat interesting ->International
     "kashmir stone pelting",            #->CONTROVERSIAL filler all1
     "domestic help",                    #local  -> JOBS/LOCAL
     "roads",                            #slight variations -> LOCAL/BASIC filler
@@ -53,7 +49,6 @@ queries = [
 
     #Pranav
     "Engineering College",              #local -> EDUCATION, 0 everywhere: no India Level College 
-    "Best Jobs",                        #local but equally local  -> JOBS
     "Legal Drinking Age",               #varied. -> LEGISLATIVE
 	"Agriculture",                      #good variance. -> 
 	"Inflation",                        #why not india?
