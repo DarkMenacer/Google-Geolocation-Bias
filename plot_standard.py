@@ -25,13 +25,24 @@ for query in query_list.queries:
     bar.showbar(query,only_cities,rbo)
 
 
-#box plot
-data = []
-for city in city_list.cities:
-    cur.execute("SELECT rbo::float FROM test_subjects INNER JOIN rbo_table ON rbo_table.qcid=test_subjects.qcid WHERE city = %s;",(city,))
-    rbo = []
-    for element in cur.fetchall():
-        rbo.append(element[0])
-    data.append(rbo)
+# # bar graph for tags
+# cur.execute("SELECT city, AVG(rbo)::float FROM test_subjects INNER JOIN rbo_table ON rbo_table.qcid=test_subjects.qcid WHERE query IN ('best hospitals','best hospital in india','Covid deaths','covid rules') GROUP BY city;")
+# rbo = []
+# only_cities = []
+# for element in cur.fetchall():
+#     only_cities.append(element[0])
+#     rbo.append(element[1])
 
-boxplot.showbox(data, only_cities)
+# bar.showbar("Medical related queries",only_cities,rbo)
+
+
+# #box plot
+# data = []
+# for city in city_list.cities:
+#     cur.execute("SELECT rbo::float FROM test_subjects INNER JOIN rbo_table ON rbo_table.qcid=test_subjects.qcid WHERE city = %s;",(city,))
+#     rbo = []
+#     for element in cur.fetchall():
+#         rbo.append(element[0])
+#     data.append(rbo)
+
+# boxplot.showbox(data, only_cities)

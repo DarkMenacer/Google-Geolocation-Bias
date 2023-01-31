@@ -7,5 +7,6 @@ def showbox(data, cities):
     ax.set_xticklabels(cities)
     
     # Creating plot
-    ax.boxplot(data)
+    ax.boxplot(data, whis=99)
+    plt.xticks(fontsize=5,rotation=(45))
     plt.show()  

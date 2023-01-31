@@ -18,6 +18,7 @@ map_df_copy = gpd.read_file(fp)
 
 try:
     cur.execute("SELECT rbo_table.qcid,query,city,rbo FROM test_subjects INNER JOIN rbo_table ON rbo_table.qcid=test_subjects.qcid;")
+    # cur.execute("SELECT city,AVG(rbo) FROM test_subjects INNER JOIN rbo_table ON rbo_table.qcid=test_subjects.qcid WHERE query IN ('domestic help','Engineering College','Legal Drinking Age','Buy Samosas') GROUP BY city;")
     result = cur.fetchall()
 except:
     print(end='')
@@ -28,6 +29,7 @@ finally:
 f = open('temp.csv', 'w', newline='')
 spamwriter = csv.writer(f)
 spamwriter.writerow(['qcid', 'query', 'city','rbo'])
+# spamwriter.writerow(['city', 'rbo'])
 spamwriter.writerows(result)
 f.close()
 
@@ -42,7 +44,7 @@ merged['rbo'] = merged['rbo'].replace(np.nan, 1)
 
 fig, ax = plt.subplots(1, figsize=(10, 10))
 ax.axis('off')
-ax.set_title('RBO with base city as Delhi', fontdict={'fontsize': '20', 'fontweight' : '10'})
+ax.set_title('RBO with base city as Delhi for queries', fontdict={'fontsize': '15', 'fontweight' : '8'})
 
 merged.plot(column='rbo',cmap='YlOrRd_r', linewidth=0.8, ax=ax, edgecolor='0',legend=True, markersize=[39.739192, -104.990337],legend_kwds={"label": "rbo"}, vmin=0)
 plt.show()
