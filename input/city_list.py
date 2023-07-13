@@ -1,0 +1,37 @@
+base_city = "New Delhi,Delhi,India"
+
+cities = [
+
+    #Following are all the capital cities of states of India
+    base_city,
+    "522237,Andhra Pradesh,India",
+    # "Srinagar,Jammu and Kashmir,India",
+    # "Ladakh,India",
+    # "Amritsar,Punjab,India",
+    # "Arunachal Pradesh,India",
+    # "Assam,India",
+    # "Patna,Bihar,India",
+    # "Raipur,Chhattisgarh,India",
+    # "Panaji,Goa,India",
+    # "Gandhinagar,Gujarat,India",
+    # "Faridabad,Haryana,India",
+    # "Shimla,Himachal Pradesh,India",
+    # "Ranchi,Jharkhand,India",
+    # "Bengaluru,Karnataka,India",
+    # "Thiruvananthapuram,Kerala,India",
+    # "Bhopal,Madhya Pradesh,India",
+    # "Mumbai,Maharashtra,India",
+    # "Imphal,Manipur,India",
+    # "Shillong,Meghalaya,India",
+    # "Aizawl,Mizoram,India",
+    # "Kohima,Nagaland,India",
+    # "Bhubaneswar,Odisha,India",
+    # "Jaipur,Rajasthan,India",
+    # "Gangtok,Sikkim,India",
+    # "Chennai,Tamil Nadu,India",
+    # "Hyderabad,Telangana,India",
+    # "Agartala,Tripura,India",
+    # "Lucknow,Uttar Pradesh,India",
+    # "Dehradun ,Uttarakhand,India",
+    # "Kolkata,West Bengal,India",
+]

@@ -1,11 +1,12 @@
-import boxplot
-import bar
-import query_list
-import city_list
+import plotparameters.boxplot
+import plotparameters.bar as bar
+import input.query_list as query_list
+import input.city_list as city_list
 import psycopg2
-import consts_fxns
+import constants.consts_fxns as consts_fxns
+import input.db_details
 
-conn = psycopg2.connect(dbname=consts_fxns.DB_NAME, user=consts_fxns.DB_USER, password=consts_fxns.DB_PASS, host=consts_fxns.DB_HOST)
+conn = psycopg2.connect(dbname=input.db_details.DB_NAME, user=input.db_details.DB_USER, password=input.db_details.DB_PASS, host=input.db_details.DB_HOST)
 cur = conn.cursor()
 
 

@@ -1,11 +1,10 @@
 from collections import defaultdict
 
 import requests
-import bs4
 
-import query_list
-import city_list
-import consts_fxns
+import input.query_list as query_list
+import input.city_list as city_list
+import constants.consts_fxns as consts_fxns
 
 # final_query = "https://www.google.co.in/search?q="+query+"&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI"+key+encoded_city
 text = []
@@ -20,11 +19,11 @@ for query in query_list.queries:
         final_query = "https://www.google.co.in/search?q=" + query + "&gl=in&hl=en&gws_rd=cr&pws=0&uule=w+CAIQICI" + key + encoded_city
         print(final_query)
         res = requests.get(final_query)
-        soup = bs4.BeautifulSoup(res.text, "html.parser")
+        # soup = bs4.BeautifulSoup(res.text, "html.parser")
         # print(soup.getText('h3'), soup)
-        heading_object = soup.find_all('h3')
-        pp = [i.getText() for i in heading_object]
-        li.append((city, pp))
+        # heading_object = soup.find_all('h3')
+        # pp = [i.getText() for i in heading_object]
+        # li.append((city, pp))
     di[query] = li
 
 for q in di:

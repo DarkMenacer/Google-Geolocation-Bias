@@ -1,11 +1,3 @@
-DB_HOST = "Pranavs-MacBook-Pro.local"
-DB_NAME = "google_bias"
-DB_USER = "pranavchatur"
-DB_PASS = "psql"
-GECKO_PATH = "/usr/local/bin/geckodriver"
-
-
-
 #scraper.py
 import base64
 def convert_b64 (value):

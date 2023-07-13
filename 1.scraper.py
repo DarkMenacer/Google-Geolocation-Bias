@@ -3,9 +3,10 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import undetected_chromedriver as uc
-import query_list
-import city_list
-import consts_fxns
+import input.query_list as query_list
+import input.city_list as city_list
+import constants.consts_fxns as consts_fxns
+import input.db_details
 import psycopg2
 
 def main():
@@ -18,9 +19,13 @@ def main():
     #chrome_options.add_argument("--window-size=1280,720")
     chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument('--incognito')
-    
-    driver = uc.Chrome(version_main=107, options=chrome_options)
-    conn = psycopg2.connect(dbname=consts_fxns.DB_NAME, user=consts_fxns.DB_USER, password=consts_fxns.DB_PASS, host=consts_fxns.DB_HOST)
+    version = 111
+
+    if input.db_details.CHROME_VERSION != 0:
+        version = input.db_details.CHROME_VERSION
+
+    driver = uc.Chrome(version_main=version, options=chrome_options)
+    conn = psycopg2.connect(dbname=input.db_details.DB_NAME, user=input.db_details.DB_USER, password=input.db_details.DB_PASS, host=input.db_details.DB_HOST)
     cur = conn.cursor()
     try:
         cur.execute("CREATE TABLE IF NOT EXISTS test_subjects (query TEXT, city TEXT, qcid SERIAL UNIQUE, PRIMARY KEY (query,city));")

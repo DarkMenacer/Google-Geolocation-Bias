@@ -5,10 +5,11 @@ import seaborn as sns
 import geopandas as gpd
 import psycopg2
 import csv
-import consts_fxns
+import constants.consts_fxns as consts_fxns
+import input.db_details
 sns.set_style('whitegrid')
 
-conn = psycopg2.connect(dbname=consts_fxns.DB_NAME, user=consts_fxns.DB_USER, password=consts_fxns.DB_PASS, host=consts_fxns.DB_HOST)
+conn = psycopg2.connect(dbname=input.db_details.DB_NAME, user=input.db_details.DB_USER, password=input.db_details.DB_PASS, host=input.db_details.DB_HOST)
 cur = conn.cursor()
 
 fp = r'maps/india-polygon.shp'
