@@ -82,7 +82,7 @@ def main():
                         link_elements = consts_fxns.adjust_links(link_elements,peeps_also_ask2)
                 
                 except:
-                    print("People also ask wasn't present")
+                    print("People Also Ask wasn't present")
                 finally:
                     links = []
 
@@ -94,7 +94,7 @@ def main():
                     cur.execute("INSERT INTO links_table (qcid, links) VALUES (%s,%s);",(qcid,links))
                     conn.commit()
                     qcid+=1
-                    #driver.delete_all_cookies() #<-- if uncommented, gives repeated captchas after certain no. of runs
+                    driver.delete_all_cookies() #forcefully clearing cookies
     finally:
         driver.quit()
         cur.close()
