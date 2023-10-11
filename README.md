@@ -42,7 +42,7 @@ The purpose of this software is to measure whether there is any bias that is ind
 	    1. In the file, "db_details.py", update the database details as per your system.
 	    2. Add the queries you want to search for in the "query_list.py" file.
       	    1. If the purpose of running the program is just to test then it is advisable to limit the number of queries to less than 3-4
-	    3. Add the cities you to search the query in and the base city to which all other cities will be compared. 
+	    3. Add the cities you want to search the query in and the base city to which all other cities will be compared. 
 		    1. NOTE: Add complete canonical name as per https://developers.google.com/static/adwords/api/docs/appendix/geo/geotargets-2022-08-18.csv
 		    2. NOTE: Do not add base city in the city_list as it is already added.
 		    3. NOTE: Do not add any city twice to avoid constraint issues in the database.
@@ -63,6 +63,6 @@ The purpose of this software is to measure whether there is any bias that is ind
 ### Log
 
     Created: 9 September 2022
-    Last Edit : 13 July 2023
+    Last Edit: 11 October 2023
     
 ---
